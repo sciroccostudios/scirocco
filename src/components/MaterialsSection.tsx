@@ -66,7 +66,7 @@ const materials: Material[] = [
     id: 'travertine',
     name: 'Marble and Granite',
     subtitle: 'Timeless elegance, natural strength',
-    color: '#E8E0D6',
+    color: '#F5DEB3',
     description: 'Ancient stone bearing the marks of millennia, timeless and enduring.',
     image: '/products/Travertino-ProductCard.png'
   }
@@ -160,7 +160,7 @@ const MaterialsSection: React.FC = () => {
           </motion.h2>
 
           <motion.p
-            className="font-lora text-xl md:text-2xl text-scirocco-ivory italic max-w-3xl mx-auto"
+            className="font-lora text-xl md:text-2xl text-scirocco-wheat italic max-w-3xl mx-auto"
             style={{ lineHeight: '1.7', letterSpacing: '0.01em' }}
             initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -172,7 +172,7 @@ const MaterialsSection: React.FC = () => {
           </motion.p>
 
           <motion.p
-            className="font-baskerville text-base md:text-lg text-scirocco-ivory/90 mt-6 max-w-2xl mx-auto"
+            className="font-baskerville text-base md:text-lg text-scirocco-wheat/90 mt-6 max-w-2xl mx-auto"
             style={{ lineHeight: '1.9', letterSpacing: '0.01em' }}
             initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -325,7 +325,7 @@ const MaterialsSection: React.FC = () => {
                     </motion.h3>
 
                     <motion.p
-                      className="font-lora text-base md:text-lg text-scirocco-ivory italic mb-4 opacity-90"
+                      className="font-lora text-base md:text-lg text-scirocco-wheat italic mb-4 opacity-90"
                       initial={prefersReducedMotion ? {} : { opacity: 0, x: -20 }}
                       whileInView={{ opacity: 0.9, x: 0 }}
                       transition={{

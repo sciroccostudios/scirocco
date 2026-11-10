@@ -75,7 +75,7 @@ const CollaborationSection: React.FC = () => {
               <h2
                 className="font-lora text-3xl sm:text-4xl md:text-6xl lg:text-7xl tracking-[0.1em] md:tracking-[0.15em] leading-tight"
                 style={{
-                  background: 'linear-gradient(135deg, #FFFFF0 0%, #F5DEB3 25%, #D4A574 50%, #F5DEB3 75%, #FFFFF0 100%)',
+                  background: 'linear-gradient(135deg, #F5DEB3 0%, #E8C99A 25%, #D4A574 50%, #E8C99A 75%, #F5DEB3 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
@@ -94,7 +94,7 @@ const CollaborationSection: React.FC = () => {
               viewport={{ once: true }}
             >
               <p
-                className="font-playfair text-lg sm:text-xl md:text-3xl lg:text-4xl italic text-scirocco-ivory"
+                className="font-playfair text-lg sm:text-xl md:text-3xl lg:text-4xl italic text-scirocco-wheat"
               >
                 Expanding Design Through Technology
               </p>
@@ -123,7 +123,7 @@ const CollaborationSection: React.FC = () => {
             viewport={{ once: true }}
           >
             <motion.h3
-              className="font-playfair text-xl sm:text-2xl md:text-4xl lg:text-5xl text-scirocco-ivory font-bold leading-tight"
+              className="font-playfair text-xl sm:text-2xl md:text-4xl lg:text-5xl text-scirocco-wheat font-bold leading-tight"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}

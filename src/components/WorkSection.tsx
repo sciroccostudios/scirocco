@@ -66,7 +66,7 @@ const WorkSection: React.FC = () => {
           >
             <span
               style={{
-                background: 'linear-gradient(135deg, #FFFFF0 0%, #F5DEB3 25%, #E8E0D6 50%, #F5DEB3 75%, #FFFFF0 100%)',
+                background: 'linear-gradient(135deg, #F5DEB3 0%, #E8C99A 25%, #D4A574 50%, #E8C99A 75%, #F5DEB3 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',

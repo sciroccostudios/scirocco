@@ -75,7 +75,7 @@ const ServicesSection: React.FC = () => {
             <span
               style={{
                 background:
-                  'linear-gradient(135deg, #FFFFF0 0%, #F5DEB3 25%, #D4A574 50%, #F5DEB3 75%, #FFFFF0 100%)',
+                  'linear-gradient(135deg, #F5DEB3 0%, #E8C99A 25%, #D4A574 50%, #E8C99A 75%, #F5DEB3 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
@@ -98,7 +98,7 @@ const ServicesSection: React.FC = () => {
           />
 
           <motion.p
-            className="font-lora text-xl md:text-2xl text-scirocco-ivory italic max-w-3xl mx-auto"
+            className="font-lora text-xl md:text-2xl text-scirocco-wheat italic max-w-3xl mx-auto"
             style={{ lineHeight: '1.7', letterSpacing: '0.01em' }}
           >
             End-to-end luxury design and procurement, from raw material to refined space.
@@ -151,7 +151,7 @@ const ServicesSection: React.FC = () => {
           className="text-center"
         >
           <p
-            className="font-lora text-lg md:text-xl text-scirocco-ivory/80 italic mb-8"
+            className="font-lora text-lg md:text-xl text-scirocco-wheat/80 italic mb-8"
             style={{ letterSpacing: '0.01em' }}
           >
             Ready to start your project?

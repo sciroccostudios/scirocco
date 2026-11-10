@@ -97,7 +97,7 @@ const EditCard: React.FC<{ edit: Edit; index: number }> = ({ edit, index }) => {
           {edit.monthLabel}
         </p>
 
-        <h2 className="font-playfair text-3xl md:text-4xl text-scirocco-wheat mb-4 group-hover:text-scirocco-ivory transition-colors duration-300">
+        <h2 className="font-playfair text-3xl md:text-4xl text-scirocco-wheat mb-4">
           {edit.title}
         </h2>
 
@@ -144,14 +144,14 @@ const CatalogueHub: React.FC = () => {
           </p>
 
           <h1
-            className="font-playfair text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-scirocco-ivory mb-8"
+            className="font-playfair text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-scirocco-wheat mb-8"
             style={{ letterSpacing: '0.06em', lineHeight: '1.1' }}
           >
             OUR CURATIONS
           </h1>
 
           <p
-            className="font-lora text-xl md:text-2xl italic text-scirocco-ivory max-w-3xl mx-auto"
+            className="font-lora text-xl md:text-2xl italic text-scirocco-wheat max-w-3xl mx-auto"
             style={{ lineHeight: '1.7' }}
           >
             A monthly exploration of design, craftsmanship and materials, bringing
@@ -178,12 +178,12 @@ const CatalogueHub: React.FC = () => {
             mx-auto because global.css caps every <p> at 70ch, which otherwise
             pins the block left despite the parent's text-center.
           */}
-          <p className="font-baskerville text-scirocco-ivory/85 mb-4 mx-auto">
+          <p className="font-baskerville text-scirocco-wheat/85 mb-4 mx-auto">
             Looking for something specific?
           </p>
           <a
             href="/#contact"
-            className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-scirocco-copper to-scirocco-desert text-white font-lora rounded-full hover:from-scirocco-noam hover:to-scirocco-copper transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-scirocco-noam to-scirocco-copper text-scirocco-wheat font-lora rounded-full hover:from-scirocco-copper hover:to-scirocco-camel transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
           >
             <span>Contact Us</span>
             <ChevronRight className="w-4 h-4" />

@@ -1,13 +1,19 @@
 ---
+import { statSync } from 'node:fs';
 import Layout from '@/layouts/Layout.astro';
 import PDFViewer from '@/components/catalogue/PDFViewer';
 import { edits, type Edit } from '@/data/edits';
+import { DESERT_GRADIENT } from '@/lib/tokens';
 
 export function getStaticPaths() {
-  return edits.map((edit) => ({ params: { slug: edit.slug }, props: { edit } }));
+  return edits.map((edit) => ({
+    params: { slug: edit.slug },
+    // Size lets the viewer load the PDF in byte ranges instead of all at once.
+    props: { edit, pdfSize: statSync(`public${edit.pdfUrl}`).size },
+  }));
 }
 
-const { edit } = Astro.props as { edit: Edit };
+const { edit, pdfSize } = Astro.props as { edit: Edit; pdfSize: number };
 ---
 
 <Layout
@@ -18,9 +24,30 @@ const { edit } = Astro.props as { edit: Edit };
   <PDFViewer
     client:only="react"
     pdfUrl={edit.pdfUrl}
+    pdfSize={pdfSize}
     title={edit.title}
     downloadFilename={edit.downloadFilename}
     backUrl="/our-curations"
     backLabel="Back to Our Curations"
-  />
+  >
+    <!--
+      Static stand-in shown until the viewer's JavaScript runs. It matches the
+      viewer's backdrop so a slow connection never sees a blank page.
+    -->
+    <section
+      slot="fallback"
+      class="relative w-full flex flex-col text-scirocco-wheat"
+      style={`background: ${DESERT_GRADIENT}; height: 100svh;`}
+    >
+      <div class="px-3 sm:px-6 md:px-8 pt-20 md:pt-24 pb-2 md:pb-3">
+        <a href="/our-curations" class="font-lora text-xs sm:text-sm text-scirocco-desert hover:text-scirocco-wheat transition-colors">
+          ‹ Back to Our Curations
+        </a>
+      </div>
+      <div class="flex-1 flex flex-col items-center justify-center gap-3">
+        <div class="w-8 h-8 rounded-full border-2 border-white/25 border-t-scirocco-desert animate-spin"></div>
+        <p class="font-lora text-sm text-scirocco-desert">Loading catalogue…</p>
+      </div>
+    </section>
+  </PDFViewer>
 </Layout>

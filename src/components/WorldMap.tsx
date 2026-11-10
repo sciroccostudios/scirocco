@@ -226,7 +226,7 @@ const WorldMap: React.FC = () => {
         </span>
         <h2
           className="font-playfair text-3xl md:text-4xl lg:text-5xl mt-4"
-          style={{ color: '#F5F0E8', lineHeight: 1.2 }}
+          style={{ color: '#F5DEB3', lineHeight: 1.2 }}
         >
           Curating Excellence Across Continents
         </h2>

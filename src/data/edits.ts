@@ -1,9 +1,13 @@
 /**
  * Monthly edits shown on /our-curations, newest first.
  *
- * To add a month: put its photos in public/curations/edits/<yyyy-mm>/, its PDF
- * in public/catalogue/edits/, and add an entry at the top of this list. The
- * card and the viewer page (/our-curations/<slug>) are generated from it.
+ * To add a month:
+ * 1. Put its photos in public/curations/edits/<yyyy-mm>/.
+ * 2. Put its PDF in public/catalogue/edits/ and run
+ *    `npm run pdf:optimize -- public/catalogue/edits/<file>.pdf`
+ *    so it opens quickly (page 1 loads without downloading the whole file).
+ * 3. Add an entry at the top of this list. The card and the viewer page
+ *    (/our-curations/<slug>) are generated from it.
  */
 export interface Edit {
   /** URL segment, e.g. "november-2026" → /our-curations/november-2026 */

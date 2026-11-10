@@ -181,7 +181,7 @@ const InquiryModal: React.FC<InquiryModalProps> = ({ isOpen, onClose, context })
               </motion.h3>
               {headerSubtitle && (
                 <motion.p
-                  className="font-lora text-sm italic text-scirocco-ivory/70 mt-1"
+                  className="font-lora text-sm italic text-scirocco-wheat/70 mt-1"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.4 }}
@@ -260,7 +260,7 @@ const InquiryModal: React.FC<InquiryModalProps> = ({ isOpen, onClose, context })
                 <motion.button
                   type="submit"
                   disabled={status === 'sending' || status === 'sent'}
-                  className="w-full px-8 py-4 bg-gradient-to-r from-scirocco-copper to-scirocco-desert text-white font-lora rounded-full hover:from-scirocco-noam hover:to-scirocco-copper transition-all duration-300 font-medium shadow-lg hover:shadow-xl disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="w-full px-8 py-4 bg-gradient-to-r from-scirocco-noam to-scirocco-copper text-scirocco-wheat font-lora rounded-full hover:from-scirocco-copper hover:to-scirocco-camel transition-all duration-300 font-medium shadow-lg hover:shadow-xl disabled:opacity-60 disabled:cursor-not-allowed"
                   whileHover={status === 'idle' ? { scale: 1.02, y: -2 } : {}}
                   whileTap={status === 'idle' ? { scale: 0.98 } : {}}
                 >
@@ -268,7 +268,7 @@ const InquiryModal: React.FC<InquiryModalProps> = ({ isOpen, onClose, context })
                 </motion.button>
               </div>
 
-              <p aria-live="polite" className="text-center text-xs text-scirocco-ivory/70 font-baskerville mx-auto">
+              <p aria-live="polite" className="text-center text-xs text-scirocco-wheat/70 font-baskerville mx-auto">
                 {status === 'sent'
                   ? 'Thank you. We will be in touch within 24-48 hours.'
                   : status === 'error'

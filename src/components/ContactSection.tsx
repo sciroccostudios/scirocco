@@ -37,7 +37,7 @@ const ContactSection: React.FC = () => {
           <h2 className="font-playfair text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-6 md:mb-8 text-scirocco-wheat" style={{ letterSpacing: '0.05em', lineHeight: '1.2' }}>
             CONTACT
           </h2>
-          <p className="font-lora text-lg md:text-xl lg:text-2xl italic text-scirocco-ivory" style={{ lineHeight: '1.7', letterSpacing: '0.01em' }}>
+          <p className="font-lora text-lg md:text-xl lg:text-2xl italic text-scirocco-wheat" style={{ lineHeight: '1.7', letterSpacing: '0.01em' }}>
             Every collaboration begins with a conversation
           </p>
         </motion.div>
@@ -60,7 +60,7 @@ const ContactSection: React.FC = () => {
                 <h3 className="font-playfair text-2xl mb-4 text-scirocco-wheat">Get in Touch</h3>
                 <a
                   href="mailto:info@sciroccostudios.com"
-                  className="font-baskerville text-lg text-scirocco-ivory hover:text-scirocco-wheat transition-colors block mb-2"
+                  className="font-baskerville text-lg text-scirocco-wheat hover:text-scirocco-wheat transition-colors block mb-2"
                 >
                   info@sciroccostudios.com
                 </a>
@@ -68,7 +68,7 @@ const ContactSection: React.FC = () => {
                   href="https://www.instagram.com/sciroccostudios"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-lora text-scirocco-ivory hover:text-scirocco-wheat transition-colors inline-flex items-center gap-2"
+                  className="font-lora text-scirocco-wheat hover:text-scirocco-wheat transition-colors inline-flex items-center gap-2"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.405a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z" />
@@ -147,7 +147,7 @@ const ContactSection: React.FC = () => {
                     />
                   </label>
                   {attachment && (
-                    <p className="mt-2 text-xs font-lora text-scirocco-ivory text-center">
+                    <p className="mt-2 text-xs font-lora text-scirocco-wheat text-center">
                       Attached: {attachment}
                     </p>
                   )}
@@ -168,11 +168,11 @@ const ContactSection: React.FC = () => {
                   <button
                     type="submit"
                     disabled={status === 'sending'}
-                    className="px-8 py-3.5 bg-gradient-to-r from-scirocco-copper to-scirocco-desert text-white font-lora rounded-full hover:from-scirocco-noam hover:to-scirocco-copper transition-all duration-300 font-medium shadow-md hover:shadow-xl transform hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none"
+                    className="px-8 py-3.5 bg-gradient-to-r from-scirocco-noam to-scirocco-copper text-scirocco-wheat font-lora rounded-full hover:from-scirocco-copper hover:to-scirocco-camel transition-all duration-300 font-medium shadow-md hover:shadow-xl transform hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none"
                   >
                     {status === 'sending' ? 'Sending…' : 'Send Message'}
                   </button>
-                  <p aria-live="polite" className="mt-3 text-sm font-lora text-scirocco-ivory min-h-[1.25rem] mx-auto">
+                  <p aria-live="polite" className="mt-3 text-sm font-lora text-scirocco-wheat min-h-[1.25rem] mx-auto">
                     {status === 'sent' && 'Thank you. We will be in touch within 24-48 hours.'}
                     {status === 'error' && (
                       <>

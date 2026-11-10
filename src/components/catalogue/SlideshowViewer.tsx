@@ -294,7 +294,7 @@ const SlideshowViewer: React.FC<SlideshowViewerProps> = ({
         {label && count > 0 && (
           <p
             aria-live="polite"
-            className="font-playfair text-base sm:text-lg md:text-2xl text-scirocco-ivory mx-auto truncate"
+            className="font-playfair text-base sm:text-lg md:text-2xl text-scirocco-wheat mx-auto truncate"
           >
             {label(index)}
           </p>
