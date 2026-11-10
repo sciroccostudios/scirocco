@@ -58,10 +58,13 @@ const SlideshowViewer: React.FC<SlideshowViewerProps> = ({
   const stageRef = useRef<HTMLDivElement>(null);
   const [stage, setStage] = useState({ width: 0, height: 0 });
   const [content, setContent] = useState({ width: 0, height: 0 });
-  // Callback ref, not useRef: AnimatePresence mode="wait" mounts the next slide
-  // ~450ms after the index changes, so an effect keyed on index would measure the
-  // outgoing node. State-backed means we observe whichever node is actually live.
+  // Callback ref, not useRef: the outgoing slide stays mounted while it animates
+  // out, so an effect keyed on index could measure the wrong node. State-backed
+  // means we observe whichever node mounted last (the live one).
   const [contentEl, setContentEl] = useState<HTMLDivElement | null>(null);
+  const trackContent = useCallback((el: HTMLDivElement | null) => {
+    if (el) setContentEl(el);
+  }, []);
 
   // Pan offset lives in motion values so resetting can actually clear it;
   // framer-motion otherwise retains the dragged transform indefinitely.
@@ -217,11 +220,14 @@ const SlideshowViewer: React.FC<SlideshowViewerProps> = ({
               <p className="font-lora text-sm text-scirocco-desert">{loadingText}</p>
             </div>
           ) : (
-            <AnimatePresence initial={false} custom={direction} mode="wait">
+            <AnimatePresence initial={false} custom={direction}>
               {/*
                 Two elements on purpose. The outer one owns the enter/exit
                 transition (which animates x); the inner one owns drag/pan (which
                 also uses x). On a single element they'd overwrite each other.
+                The outer one is absolutely positioned so the outgoing and
+                incoming slides overlap: turns run in parallel, and a fast
+                click never waits for the previous slide to finish leaving.
               */}
               <motion.div
                 key={index}
@@ -230,11 +236,13 @@ const SlideshowViewer: React.FC<SlideshowViewerProps> = ({
                 initial="enter"
                 animate="center"
                 exit="exit"
-                transition={{ duration: prefersReducedMotion ? 0.2 : 0.45, ease: LUXURY_EASING }}
-                className="w-full h-full flex items-center justify-center"
+                transition={{ duration: prefersReducedMotion ? 0.15 : 0.3, ease: LUXURY_EASING }}
+                className="absolute inset-0 flex items-center justify-center"
               >
                 <motion.div
-                  ref={setContentEl}
+                  // Ignore the null an outgoing slide reports on unmount, which
+                  // would otherwise clobber the incoming slide's node.
+                  ref={trackContent}
                   // Unzoomed, dragging flips slides. Zoomed, it pans within bounds.
                   drag={isZoomed ? true : 'x'}
                   dragConstraints={isZoomed ? panConstraints : { left: 0, right: 0 }}

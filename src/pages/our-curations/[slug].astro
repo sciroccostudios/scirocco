@@ -1,19 +1,18 @@
 ---
-import { statSync } from 'node:fs';
 import Layout from '@/layouts/Layout.astro';
 import PDFViewer from '@/components/catalogue/PDFViewer';
 import { edits, type Edit } from '@/data/edits';
 import { DESERT_GRADIENT } from '@/lib/tokens';
+import { editPdf, type EditPdf } from '@/lib/editPdf';
 
 export function getStaticPaths() {
   return edits.map((edit) => ({
     params: { slug: edit.slug },
-    // Size lets the viewer load the PDF in byte ranges instead of all at once.
-    props: { edit, pdfSize: statSync(`public${edit.pdfUrl}`).size },
+    props: { edit, pdf: editPdf(edit.pdfUrl) },
   }));
 }
 
-const { edit, pdfSize } = Astro.props as { edit: Edit; pdfSize: number };
+const { edit, pdf } = Astro.props as { edit: Edit; pdf: EditPdf };
 ---
 
 <Layout
@@ -23,8 +22,8 @@ const { edit, pdfSize } = Astro.props as { edit: Edit; pdfSize: number };
 >
   <PDFViewer
     client:only="react"
-    pdfUrl={edit.pdfUrl}
-    pdfSize={pdfSize}
+    pdfUrl={pdf.url}
+    pdfSize={pdf.size}
     title={edit.title}
     downloadFilename={edit.downloadFilename}
     backUrl="/our-curations"

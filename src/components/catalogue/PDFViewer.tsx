@@ -1,5 +1,6 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
+import type { PDFDocumentProxy } from 'pdfjs-dist';
 import { Download } from 'lucide-react';
 import SlideshowViewer from './SlideshowViewer';
 
@@ -29,6 +30,10 @@ const DEFAULT_ASPECT = 210 / 297;
  * react-pdf reloads the document if `options` changes identity.
  */
 const PDF_OPTIONS = { disableAutoFetch: true, disableStream: true };
+
+/** Pages on each side of the current one to download in the background. */
+const PREFETCH_AHEAD = 2;
+const PREFETCH_BEHIND = 1;
 
 /**
  * Loads the PDF through our own range requests.
@@ -73,6 +78,8 @@ const PDFViewer: React.FC<PDFViewerProps> = ({
   backLabel = 'Back to Our Curations',
 }) => {
   const [numPages, setNumPages] = useState(0);
+  const [pdf, setPdf] = useState<PDFDocumentProxy | null>(null);
+  const [index, setIndex] = useState(0);
   const [loadError, setLoadError] = useState(false);
   const [aspect, setAspect] = useState(DEFAULT_ASPECT);
   const [rangesFailed, setRangesFailed] = useState(false);
@@ -86,8 +93,9 @@ const PDFViewer: React.FC<PDFViewerProps> = ({
   // it gets no corners or shadow and the site background shows through.
   const [rendered, setRendered] = useState<ReadonlySet<number>>(() => new Set());
 
-  const onDocumentLoadSuccess = useCallback(({ numPages }: { numPages: number }) => {
-    setNumPages(numPages);
+  const onDocumentLoadSuccess = useCallback((doc: PDFDocumentProxy) => {
+    setPdf(doc);
+    setNumPages(doc.numPages);
     setLoadError(false);
   }, []);
 
@@ -110,6 +118,26 @@ const PDFViewer: React.FC<PDFViewerProps> = ({
   const markRendered = useCallback((i: number) => {
     setRendered((prev) => (prev.has(i) ? prev : new Set(prev).add(i)));
   }, []);
+
+  // Once the current page has drawn, quietly fetch its neighbours' images so
+  // flipping to them doesn't wait on the network. Waiting for the draw keeps
+  // the background downloads from slowing down the page being looked at.
+  const currentDrawn = rendered.has(index);
+  useEffect(() => {
+    if (!pdf || !currentDrawn) return;
+    const n = pdf.numPages;
+    const offsets = [
+      ...Array.from({ length: PREFETCH_AHEAD }, (_, k) => k + 1),
+      ...Array.from({ length: PREFETCH_BEHIND }, (_, k) => -(k + 1)),
+    ];
+    for (const off of offsets) {
+      const pageNumber = ((index + off) % n + n) % n + 1;
+      // Building the operator list makes pdf.js download everything the page uses.
+      pdf.getPage(pageNumber)
+        .then((page) => page.getOperatorList())
+        .catch(() => {}); // best effort; the page simply loads when visited
+    }
+  }, [pdf, index, currentDrawn]);
 
   const errorNode = (
     <div className="flex flex-col items-center gap-4">
@@ -168,6 +196,7 @@ const PDFViewer: React.FC<PDFViewerProps> = ({
         count={loadError ? 1 : numPages}
         error={loadError ? errorNode : undefined}
         label={(i) => `Page ${i + 1}`}
+        onIndexChange={setIndex}
         renderSlide={(i, zoom, stage) => {
           // Contain the page in the stage, then multiply by zoom.
           const fitByWidth = stage.width > 0 && aspect > stage.width / stage.height;
