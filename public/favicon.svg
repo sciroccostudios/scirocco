@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <rect width="100" height="100" fill="#E8E0D6"/>
+  <g transform="translate(50, 50)">
+    <!-- Wind waves -->
+    <path d="M-25 -10 Q-15 -15, -5 -10 T15 -10 Q25 -5, 35 -10" stroke="#945C4F" fill="none" stroke-width="2.5"/>
+    <path d="M-25 0 Q-15 -5, -5 0 T15 0 Q25 5, 35 0" stroke="#945C4F" fill="none" stroke-width="2.5"/>
+    <path d="M-25 10 Q-15 5, -5 10 T15 10 Q25 15, 35 10" stroke="#945C4F" fill="none" stroke-width="2.5"/>
+    <!-- Diamonds -->
+    <circle cx="-5" cy="20" r="3" fill="#945C4F"/>
+    <circle cx="5" cy="20" r="3" fill="#945C4F"/>
+  </g>
+</svg>

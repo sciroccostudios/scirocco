@@ -1,0 +1,41 @@
+{
+  "name": "scirocco-studio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Marketing and catalogue site for Scirocco Studio, an interior design and procurement practice.",
+  "license": "UNLICENSED",
+  "author": "Scirocco Studio",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build && node scripts/build-csp.mjs",
+    "preview": "astro preview",
+    "analyze": "ANALYZE=1 astro build",
+    "typecheck": "astro check",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/react": "^4.4.0",
+    "@astrojs/tailwind": "^6.0.2",
+    "astro": "^5.15.1",
+    "framer-motion": "^12.23.24",
+    "lucide-react": "^0.554.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-pdf": "^10.3.0",
+    "react-simple-maps": "^3.0.0",
+    "tailwindcss": "^3.4.18"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/sitemap": "^3.6.0",
+    "@types/react": "18.2.0",
+    "@types/react-dom": "18.2.0",
+    "astro-compress": "^2.3.8",
+    "rollup-plugin-visualizer": "^6.0.5",
+    "sharp": "^0.34.4",
+    "terser": "^5.44.1",
+    "typescript": "^5.6.3"
+  }
+}

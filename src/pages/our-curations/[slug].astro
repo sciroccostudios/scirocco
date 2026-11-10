@@ -1,0 +1,26 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import PDFViewer from '@/components/catalogue/PDFViewer';
+import { edits, type Edit } from '@/data/edits';
+
+export function getStaticPaths() {
+  return edits.map((edit) => ({ params: { slug: edit.slug }, props: { edit } }));
+}
+
+const { edit } = Astro.props as { edit: Edit };
+---
+
+<Layout
+  title={`${edit.title} | The Scirocco Edit | Scirocco Studio`}
+  description={`${edit.subtitle}. ${edit.monthLabel} edition of The Scirocco Edit, curated by Scirocco Studio.`}
+  hideFooter
+>
+  <PDFViewer
+    client:only="react"
+    pdfUrl={edit.pdfUrl}
+    title={edit.title}
+    downloadFilename={edit.downloadFilename}
+    backUrl="/our-curations"
+    backLabel="Back to Our Curations"
+  />
+</Layout>

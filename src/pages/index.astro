@@ -1,0 +1,23 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import HeroSectionScrollLocked from '@/components/HeroSectionScrollLocked';
+import AboutSection from '@/components/AboutSection';
+import MaterialsSection from '@/components/MaterialsSection';
+import WorkSection from '@/components/WorkSection';
+import ContactSection from '@/components/ContactSection';
+import NetlifyFormRegistry from '@/components/NetlifyFormRegistry.astro';
+---
+
+<Layout>
+  <!-- Scroll-locked hero with progressive animation -->
+  <HeroSectionScrollLocked client:load />
+
+  <!-- Other sections load when visible in viewport -->
+  <AboutSection client:visible />
+  <MaterialsSection client:visible />
+
+  <WorkSection client:load />
+  <ContactSection client:visible />
+
+  <NetlifyFormRegistry />
+</Layout>

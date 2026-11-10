@@ -1,0 +1,23 @@
+---
+/**
+ * Netlify detects forms by parsing the built HTML at deploy time. The inquiry
+ * modal only renders once React has hydrated and the user has opened it, so it
+ * never appears in dist/ and would go undetected. This static stub registers
+ * it, listing every field the real form submits.
+ *
+ * The contact form needs no stub: it is server-rendered into dist/index.html.
+ *
+ * Included once, on the home page. Detection is site-wide, not per-page.
+ */
+---
+
+<form name="inquiry" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+  <input type="hidden" name="form-name" value="inquiry" />
+  <input name="bot-field" />
+  <input name="name" />
+  <input type="email" name="email" />
+  <input name="phone" />
+  <textarea name="message"></textarea>
+  <input name="inquiry-type" />
+  <input name="subject" />
+</form>
